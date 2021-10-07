@@ -1,5 +1,5 @@
-#Setup/run instructions
-###Run the following commands to get started
+# Setup/run instructions
+### Run the following commands to get started
 
 Create .env file and add environment variables. Open .env.example for samples.
 
@@ -61,7 +61,7 @@ http://127.0.0.1:8000/api/v1/departments/tree-view/?page=3
 }
 ```
 
-##Working with data
+## Working with data
 You can perform CRUD operations in admin panel
 
 ```http://127.0.0.1:8000/admin/```
