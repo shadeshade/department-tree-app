@@ -1,3 +1,4 @@
+from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 import factory
@@ -5,6 +6,8 @@ import factory
 from factory import fuzzy
 
 from core.models import Department
+
+BATCH_SIZE = 2000
 
 
 class EmployeeFactory(factory.django.DjangoModelFactory):
@@ -19,6 +22,8 @@ class EmployeeFactory(factory.django.DjangoModelFactory):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        call_command("loaddata", "departments.json")  # Load initial data into db using fixtures
+
         departments = Department.objects.all()
         for department in departments:
-            EmployeeFactory.create_batch(2000, department=department)
+            EmployeeFactory.create_batch(BATCH_SIZE, department=department)

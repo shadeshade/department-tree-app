@@ -1,8 +1,14 @@
-from django.views.generic import ListView
+from rest_framework.generics import GenericAPIView
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 
-from .models import Department
+from .serializer import get_department_tree
 
 
-class DepartmentListView(ListView):
-    model = Department
-    template_name = 'core/index.html'
+class DepartmentTreeView(GenericAPIView):
+    paginator = PageNumberPagination()
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_serializer_context()
+        data = get_department_tree(context=context)
+        return Response(data)
