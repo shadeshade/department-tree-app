@@ -1,6 +1,8 @@
 #Setup/run instructions
 ###Run the following commands to get started
 
+Create .env file and add environment variables. Open .env.example for samples.
+
 Make migrations:
 
 ```python manage.py migrate```
